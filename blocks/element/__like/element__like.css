@@ -1,0 +1,6 @@
+.element__like {
+  display: flex;
+  height: 19px;
+  margin: auto 20px;
+  padding: 0;
+}
