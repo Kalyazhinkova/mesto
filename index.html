@@ -7,7 +7,7 @@
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-  <body>
+  <body class="body">
     <div class="page">
       <header class="header">
         <img src="./images/header-logo.svg" alt="Логотип" class="header__logo"/>
@@ -27,7 +27,7 @@
           <article class="element">
             <img src="./images/1.png" alt="Фотография" class="element__image">
             <h2 class="element__title">Карачаевск
-              <input class="element__like" type="image" src="./images/element-like.svg" alt="Лайк">
+              <button class="element__like" type="button"></button>
             </h2>
           </article>
           <article class="element">
@@ -67,11 +67,19 @@
       </footer>
     </div>
     <div class="popup popup_hidden">
-      <div class="popup__content">
+      <section class="popup__content">
         <input class="popup__close-button" type="image" src="./images/close-button.svg">
         <h4 class="popup__title">Редактировать профиль</h4>
-        <button class="popup__save-button">Сохранить</button>
-      </div>
+        <form class="form">
+          <fieldset class="form__input">
+            <input type="text" class="form__item form__item-name" name="name" value="Жак-Ив Кусто">
+          </fieldset>
+          <fieldset class="form__input">
+            <input type="text" class="form__item form__item-description" name="description" value="Исследователь океана">
+          </fieldset>
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </section>
     </div>
     <script src="./pages/index.js"></script>
   </body>

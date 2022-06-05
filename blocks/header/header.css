@@ -8,3 +8,10 @@
   border-bottom: 1px solid #545454;
   /* border-bottom: 1px solid rgba(324, 324, 324, 0.7); */
 }
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 28px 0 0 0;
+    height: 56px;
+  }
+}

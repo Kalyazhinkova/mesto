@@ -6,3 +6,10 @@
   border-radius: 50%;
   margin-right: 30px;
 }
+
+@media screen and (max-width: 600px) {
+  .profile__avatar {
+    display: flex;
+    margin: 0 auto;
+  }
+}
