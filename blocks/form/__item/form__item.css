@@ -1,6 +1,5 @@
 .form__item {
   border: 0;
-  margin: 0;
   padding: 0 2px;
   font-family: "Inter";
   font-style: normal;
@@ -8,7 +7,6 @@
   font-size: 14px;
   line-height: 17px;
   width: 358px;
-  padding: 0;
   margin: 0 36px 30px 36px;
   border-bottom:1px solid rgba(0, 0, 0, 0.2);
   -webkit-background-clip: padding-box;
