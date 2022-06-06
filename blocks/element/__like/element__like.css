@@ -2,9 +2,9 @@
   display: flex;
   width: 22px;
   height: 19px;
-  margin: auto 20px;
+  margin: 31px 20px 30px 20px;
   padding: 0;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   background-image: url('../../../images/element-like.svg');
   border: none;
   background-position: center;
