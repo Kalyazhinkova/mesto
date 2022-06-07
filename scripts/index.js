@@ -10,6 +10,8 @@ let formElement = document.querySelector('.form');
 
 function openPopup(){
   popup.classList.remove('popup_hidden');
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
 }
 
 function closePopup(){
