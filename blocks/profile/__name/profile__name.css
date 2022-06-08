@@ -12,7 +12,7 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .profile__name {
     width: 189px;
     font-size: 27px;
