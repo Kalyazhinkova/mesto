@@ -28,3 +28,13 @@ function formSubmitHandler(evt) {
 buttonEdit.addEventListener('click', openPopup);
 buttonClose.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
+
+const a = [1, 9, 2, 2, 3, 4, 1, 7, 8, 0, 9, 0, 1, 5, 3];
+
+const b = a.filter(function (item, position, array) {
+  console.log (array.lastIndexOf(item));
+  return array.lastIndexOf(item) === position; // вернём уникальные элементы
+});
+
+console.log(a); // [1, 9, 2, 2, 3, 4, 1, 7, 8, 0, 9, 0, 1, 5, 3]
+console.log(b); // [2, 4, 7, 8, 9, 0, 1, 5, 3] 
