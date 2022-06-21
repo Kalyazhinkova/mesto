@@ -19,8 +19,8 @@ const jobInput = document.querySelector('#description');
 const namePicture = document.querySelector('#image_name');
 const linkImage = document.querySelector('#image_link');
 
-const formElement = document.querySelector('#profile-form');
-const formElementAdd = document.querySelector('#add-form');
+const profileForm = document.querySelector('#profile-form');
+const addForm = document.querySelector('#add-form');
 
 const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
@@ -56,10 +56,6 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
-  if (popup === profilePopup) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileDescription.textContent;
-  }
 }
 
 function closePopup(popup) {
@@ -73,7 +69,7 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 }
 
-function addFormSubmit(evt) {
+function handleAddFormSubmit(evt) {
   evt.preventDefault();
   addElement();
   closePopup(addPopup);
@@ -95,6 +91,7 @@ function createCard(name, link) {
     bigPopup.classList.add('popup_open');
     popupImageName.textContent = name;
     popupImage.src = link;
+    popupImage.alt = name;
   });
   elementLike.addEventListener('click', toggleLike);
   deleteButton.addEventListener('click', function () {
@@ -118,7 +115,12 @@ initialCards.forEach(function (el) {
   elements.prepend(newElement);
 })
 
-buttonEdit.addEventListener('click', () => openPopup(profilePopup));
+buttonEdit.addEventListener('click', () => 
+{
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
+  openPopup(profilePopup);});
+
 buttonAdd.addEventListener('click', () => openPopup(addPopup));
 
 closeButtons.forEach((button) => {
@@ -126,7 +128,5 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
-formElement.addEventListener('submit', handleProfileFormSubmit);
-formElementAdd.addEventListener('submit', addFormSubmit);
-
-
+profileForm.addEventListener('submit', handleProfileFormSubmit);
+addForm.addEventListener('submit', handleAddFormSubmit);
