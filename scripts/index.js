@@ -54,18 +54,14 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
-  if(popup !== bigPopup){
-    checkValidityPopup(popup);
-  }
+  // if(popup !== bigPopup){
+  //   checkValidityPopup(popup);
+  // }
   document.addEventListener('keyup', closePopupEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_open');
-  // const allSpan = popup.querySelectorAll('.form__item-error');
-  // allSpan.forEach(function(el){
-  //   el.textContent="";
-  // });
   document.removeEventListener('keyup', closePopupEscape);
 }
 
@@ -106,7 +102,6 @@ function createCard(name, link) {
     popupImageName.textContent = name;
     popupImage.src = link;
     popupImage.alt = name;
-    document.addEventListener('keyup', closePopupEscape);
   });
   elementLike.addEventListener('click', toggleLike);
   deleteButton.addEventListener('click', function () {
@@ -132,12 +127,15 @@ initialCards.forEach(function (el) {
 
 buttonEdit.addEventListener('click', () => 
 {
-  
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
+  checkValidityPopup(profilePopup);
   openPopup(profilePopup);});
 
-buttonAdd.addEventListener('click', () => openPopup(addPopup));
+buttonAdd.addEventListener('click', () => {
+  checkValidityPopup(addPopup);
+  openPopup(addPopup);
+});
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
