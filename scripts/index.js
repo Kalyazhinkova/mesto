@@ -15,8 +15,8 @@ const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const nameInput = document.querySelector('#name'); //поле ввода имя
 const jobInput = document.querySelector('#description'); //поле ввода описание
-const namePicture = document.querySelector('#image_name'); //поле ввода названия картинки
-const linkImage = document.querySelector('#image_link'); //поле ввода ссылки 
+const namePicture = document.querySelector('#image-name'); //поле ввода названия картинки
+const linkImage = document.querySelector('#image-link'); //поле ввода ссылки 
 
 const profileForm = document.querySelector('#profile-form');
 const addForm = document.querySelector('#add-form');
@@ -54,11 +54,18 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
+  if(popup !== bigPopup){
+    checkValidityPopup(popup);
+  }
   document.addEventListener('keyup', closePopupEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_open');
+  // const allSpan = popup.querySelectorAll('.form__item-error');
+  // allSpan.forEach(function(el){
+  //   el.textContent="";
+  // });
   document.removeEventListener('keyup', closePopupEscape);
 }
 
@@ -95,7 +102,7 @@ function createCard(name, link) {
   elementImage.src = link;
   elementImage.alt = name;
   elementImage.addEventListener('click', function () {
-    bigPopup.classList.add('popup_open');
+    openPopup(bigPopup);
     popupImageName.textContent = name;
     popupImage.src = link;
     popupImage.alt = name;
@@ -125,6 +132,7 @@ initialCards.forEach(function (el) {
 
 buttonEdit.addEventListener('click', () => 
 {
+  
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
   openPopup(profilePopup);});
@@ -139,8 +147,7 @@ closeButtons.forEach((button) => {
 allPopup.forEach((popup) => {
   popup.addEventListener('mousedown', function(evt) {
     if(evt.target === evt.currentTarget) {
-          const opPop = document.querySelector('.popup_open');
-          closePopup(opPop);
+          closePopup(evt.currentTarget);
         }
   });
 });

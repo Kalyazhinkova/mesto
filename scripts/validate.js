@@ -1,3 +1,4 @@
+//Показываем ошибку
 function showInputError (formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add('form__item_type_error');
@@ -5,6 +6,7 @@ function showInputError (formElement, inputElement, errorMessage) {
   errorElement.classList.add('form__item-error_active');
 }
 
+//Скрытие ошибки
 function hideInputError (formElement, inputElement) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove('form__item_type_error');
@@ -12,6 +14,7 @@ function hideInputError (formElement, inputElement) {
   errorElement.textContent ='';
 }
 
+//Проверка валидности поля и показ или скрытие ошибки
 function isValid (formElement, inputElement) {
   if(!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
@@ -20,6 +23,7 @@ function isValid (formElement, inputElement) {
   }
 }
 
+//вызываем слушатели
 function enableValidation () {
   const formList = Array.from(document.querySelectorAll('.form'));
   formList.forEach((formElement)=>{
@@ -30,20 +34,37 @@ function enableValidation () {
   });
 }
 
+//Проверка валидности полей
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement)=>{
     return !inputElement.validity.valid;
   })
 }
 
+//Проверка валидности попапа при открытии
+function checkValidityPopup (popup) {
+  const buttonElement=popup.querySelector('.popup__button');
+  const inputList = Array.from(popup.querySelectorAll('.form__item'));
+  inputList.forEach((inputElement)=>{
+      isValid(popup, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+}
+
+
+
+// Устанавливаем состояние кнопки
 function toggleButtonState (inputList, buttonElement) {
   if(hasInvalidInput(inputList)) {
     buttonElement.classList.add('popup__button_inactive');
+    buttonElement.setAttribute('disabled', 'true');
   } else {
     buttonElement.classList.remove('popup__button_inactive');
+    buttonElement.removeAttribute('disabled');
   }
 }
 
+//Устанавливаем слушатели
 function setEventListeners (formElement) {
   const inputList = Array.from(formElement.querySelectorAll('.form__item'));
   const buttonElement = formElement.querySelector('.popup__button');
