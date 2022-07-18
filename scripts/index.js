@@ -54,9 +54,6 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
-  // if(popup !== bigPopup){
-  //   checkValidityPopup(popup);
-  // }
   document.addEventListener('keyup', closePopupEscape);
 }
 
@@ -105,8 +102,8 @@ function createCard(name, link) {
   });
   elementLike.addEventListener('click', toggleLike);
   deleteButton.addEventListener('click', function () {
-    const removeElement = deleteButton.closest('.element');
-    removeElement.remove();
+    const removeElement1 = deleteButton.closest('.element');
+    removeElement1.remove();
   });
   return newElement;
 }
