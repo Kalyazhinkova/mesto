@@ -1,16 +1,10 @@
-export {Card};
-
-const popupCard = document.querySelector('.popup_big');
-const popupImage = document.querySelector('.popup__image');
-const popupImageName = document.querySelector('.popup__image-name');
-const popupCloseButtonCard = document.querySelector('.popup__close-button_big');
-
-class Card {
-  constructor(data, cardSelector) {
+export default class Card {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this.isLiked = false;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -25,50 +19,37 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardTitle = this._element.querySelector('.element__title');
+    this._cardImage = this._element.querySelector('.element__image');
+    this._likeButton = this._element.querySelector('.element__like');
+    this._trashButton = this._element.querySelector('.element__trash');
     this._setEventListeners();
 
-    this._element.querySelector('.element__title').textContent = this._name;
-    this._element.querySelector('.element__image').src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name + `. Фотография`;
 
     return this._element;
   }
 
   _like() {
     this.isLiked = !this.isLiked;
-    this._element.querySelector('.element__like').classList.toggle('element__like_active');
+    this._likeButton.classList.toggle('element__like_active');
   }
 
   _deleteElement() {
     this._element.remove();
   }
 
-  _handleOpenPopup() {
-    popupCard.classList.add('popup_open');
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupImageName.textContent = this._name;
-  }
-
-  _handleClosePopup() {
-    popupCard.classList.remove('popup_open');
-    popupImage.src = '';
-    popupImage.alt = '';
-    popupImageName.textContent = '';
-  }
-
   _setEventListeners() {
-    this._element.querySelector('.element__like').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._like();
     });
-    this._element.querySelector('.element__trash').addEventListener('click', () => {
+    this._trashButton.addEventListener('click', () => {
       this._deleteElement();
     });
-    this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._handleOpenPopup();
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
     });
-    popupCloseButtonCard.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
-
   }
 }

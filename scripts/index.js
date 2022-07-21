@@ -1,11 +1,14 @@
 import { initialCards } from './data.js';
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 const elements = document.querySelector('.elements');
 
 const allPopup = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile');
 const addPopup = document.querySelector('.popup_add');
+const cardPopup = document.querySelector('.popup_big');
+const popupImageName1 = document.querySelector('.popup__image-name');
+const popupImage2 = document.querySelector('.popup__image');
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
@@ -56,6 +59,13 @@ function closePopupEscape (evt) {
   }
 }
 
+function handleCardClick(name,link) {
+  popupImageName1.textContent = name;
+  popupImage2.src = link;
+  popupImage2.alt = name + `. Фотография`;
+  openPopup(cardPopup);
+}
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -70,17 +80,19 @@ function handleAddFormSubmit(evt) {
   evt.target.reset();
 }
 
-function addElement() {
-  const data = {name:namePicture.value, link:linkImage.value};
-  const card = new Card(data,'#element-template');
+function createCard (item) {
+  const card = new Card(item,'#element-template', handleCardClick);
   const cardElement = card.generateCard();
-  elements.prepend(cardElement);
+  return cardElement;
+}
+
+function addElement() {
+  const item = {name:namePicture.value, link:linkImage.value};
+  elements.prepend(createCard(item));
 }
 
 initialCards.forEach((item)=>{
-  const card = new Card(item, '#element-template');
-  const cardElement = card.generateCard();
-  elements.prepend(cardElement);
+  elements.prepend(createCard(item));
 });
 
 buttonEdit.addEventListener('click', () => 
