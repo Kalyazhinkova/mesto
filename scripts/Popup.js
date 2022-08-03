@@ -2,7 +2,7 @@ export {Popup, PopupWithImage, PopupWithForm};
 
 class Popup {
   constructor (popupSelector) {
-    this._popup = document.querySelector(popupSelector);
+    this._popup = popupSelector;
     this._handleEscClosePopup = this._handleEscClosePopup.bind(this);
   }
 
