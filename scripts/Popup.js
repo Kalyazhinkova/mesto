@@ -3,7 +3,8 @@ export {Popup, PopupWithImage, PopupWithForm};
 class Popup {
   constructor (popupSelector) {
     this._popup = popupSelector;
-    this._handleEscClosePopup = this._handleEscClosePopup.bind(this);
+    //this._handleEscClosePopup = this._handleEscClosePopup.bind(this);
+    //this._handleEscClosePopup = _handleEscClosePopup;
   }
 
   openPopup() {
@@ -17,25 +18,21 @@ class Popup {
   }
 
   _handleEscClosePopup(evt) {
-    if (evt.key === "Escape") {
-     //this._popup = document.querySelector('.popup_open');
-      this.closePopup();
-    }
+    // if (evt.key === "Escape") {
+    //   this._popup = document.querySelector('.popup_open');
+    //   this.closePopup();
+    // }
     console.log(1);
   }
 
   setEventListeners() {
-    this._popup.addEventListener('mousedown', function(evt) {
-      if (evt.target === evt.currentTarget) {
-        closePopup();
-      }
-    })
+    //слушатель для иконки закрытия попапа
   }
 }
 
 class PopupWithImage extends Popup {
   constructor (popupSelector) {
-    super(popupSelector); //
+    super(popupSelector); //наследуем родительский конструктор + расширяем его
     this._popupImage = this._popup.querySelector('.popup__image');
     this._popupImageName = this._popup.querySelector('.popup__image-name');
   }
@@ -51,8 +48,8 @@ class PopupWithImage extends Popup {
 }
 
 class PopupWithForm extends Popup {
-  constructor (popupSelector, submitCallBack) {
-    super(popupSelector);
+  constructor (popup, submitCallBack) {
+    super(popup);
     this._submitCallBack = submitCallBack;
 
   }
