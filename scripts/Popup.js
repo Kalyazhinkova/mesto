@@ -2,31 +2,37 @@ export {Popup, PopupWithImage, PopupWithForm};
 
 class Popup {
   constructor (popupSelector) {
-    this._popup = popupSelector;
-    //this._handleEscClosePopup = this._handleEscClosePopup.bind(this);
-    //this._handleEscClosePopup = _handleEscClosePopup;
+    this._popup = document.querySelector(popupSelector);
+    this._handleEscClosePopup = this._handleEscClose.bind(this);
+    this._handleOverlayClosePopup = this._handleOverlayClose.bind(this);
   }
 
-  openPopup() {
+  open() {
     this._popup.classList.add('popup_open');
-    document.addEventListener('keyup', this._handleEscClosePopup());
+    document.addEventListener('keyup', this._handleEscClosePopup);
+    this._popup.addEventListener('click', this._handleOverlayClosePopup);
   }
 
-  closePopup() {
+  close() {
     this._popup.classList.remove('popup_open');
-    document.removeEventListener('keyup', this._handleEscClosePopup());
+    document.removeEventListener('keyup', this._handleEscClosePopup);
+    this._popup.removeEventListener('click', this._handleOverlayClosePopup);
   }
 
-  _handleEscClosePopup(evt) {
-    // if (evt.key === "Escape") {
-    //   this._popup = document.querySelector('.popup_open');
-    //   this.closePopup();
-    // }
-    console.log(1);
+  _handleEscClose(evt) {
+    if (evt.key === "Escape") {
+      this.close();
+    }
+  }
+
+  _handleOverlayClose(evt) {
+    if(evt.target === evt.currentTarget) {
+      this.close();
+    }
   }
 
   setEventListeners() {
-    //слушатель для иконки закрытия попапа
+    this._popup.querySelector('.popup__close-button').addEventListener('click',()=>this.close());
   }
 }
 
@@ -35,23 +41,23 @@ class PopupWithImage extends Popup {
     super(popupSelector); //наследуем родительский конструктор + расширяем его
     this._popupImage = this._popup.querySelector('.popup__image');
     this._popupImageName = this._popup.querySelector('.popup__image-name');
+    super.setEventListeners();
   }
 
-  openPopup(name, link) {
-    super.openPopup(); //вызываем родительский метод
-
+  open(name, link) {
     //дополняем новой функциональностью
     this._popupImageName.textContent = name;
     this._popupImage.src = link;
     this._popupImage.alt = name + `. Фотография`;
-  }
+    super.open(); //вызываем родительский метод
+  }  
+  
 }
 
 class PopupWithForm extends Popup {
   constructor (popup, submitCallBack) {
     super(popup);
     this._submitCallBack = submitCallBack;
-
   }
   
   _getInputValues() {
@@ -63,6 +69,7 @@ class PopupWithForm extends Popup {
   }
 
   closePopup(){
+    super.closePopup(); //вызываем родительский метод
 
   }
   
