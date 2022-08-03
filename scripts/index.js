@@ -1,14 +1,13 @@
 import { initialCards } from './data.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import { Popup, PopupWithForm, PopupWithImage } from './Popup.js';
 const elements = document.querySelector('.elements');
 
 const allPopup = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile');
 const addPopup = document.querySelector('.popup_add');
 const cardPopup = document.querySelector('.popup_big');
-const popupImageName1 = document.querySelector('.popup__image-name');
-const popupImage2 = document.querySelector('.popup__image');
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
@@ -47,23 +46,21 @@ function openPopup(popup) {
   document.addEventListener('keyup', closePopupEscape);
 }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_open');
-  document.removeEventListener('keyup', closePopupEscape);
-}
+// function closePopup(popup) {
+//   popup.classList.remove('popup_open');
+//   document.removeEventListener('keyup', closePopupEscape);
+// }
 
-function closePopupEscape (evt) {
-  if (evt.key === "Escape") {
-    const popup = document.querySelector('.popup_open');
-    closePopup(popup);
-  }
-}
+// function closePopupEscape (evt) {
+//   if (evt.key === "Escape") {
+//     const popup = document.querySelector('.popup_open');
+//     closePopup(popup);
+//   }
+// }
 
 function handleCardClick(name,link) {
-  popupImageName1.textContent = name;
-  popupImage2.src = link;
-  popupImage2.alt = name + `. Фотография`;
-  openPopup(cardPopup);
+  const popup = new PopupWithImage(cardPopup);
+  popup.openPopup(name,link);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -104,12 +101,13 @@ buttonEdit.addEventListener('click', () =>
 
 buttonAdd.addEventListener('click', () => {
   formAddContent.checkValidityPopup();
-  openPopup(addPopup);
+  const popup = new Popup(addPopup);
+  popup.openPopup();
 });
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
+  button.addEventListener('click', () => popup.closePopup());
 });
 
 allPopup.forEach((popup) => {
@@ -122,7 +120,6 @@ allPopup.forEach((popup) => {
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 addForm.addEventListener('submit', handleAddFormSubmit);
-
 
 
 

@@ -74,7 +74,6 @@ export default class FormValidator {
         });
       };
     });
-    console.log(1);
   }
 
 
