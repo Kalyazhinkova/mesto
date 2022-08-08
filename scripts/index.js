@@ -60,8 +60,7 @@ function handleCardClick(name, link) {
 
 function handleAddFormSubmit(formData) {
   formData = {name: namePicture.value, link: linkImage.value};
-  console.log(formData);
-  cardList.addItem(formData);
+  cardList.addItem(createCard(formData));
   console.log(cardList);
   addPopup.close();
 }
