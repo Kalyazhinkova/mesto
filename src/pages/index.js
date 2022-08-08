@@ -1,10 +1,12 @@
-import { initialCards } from './data.js';
-import Card from './Card.js';
-import Section  from './Section.js';
-import FormValidator from './FormValidator.js';
-import PopupWithImage from './Popup/PopupWithImage.js';
-import PopupWithForm from './Popup/PopupWithForm.js';
-import UserInfo from './UserInfo.js';
+import './index.css';
+import { initialCards } from '../scripts/data.js';
+import Card from '../components/Card.js';
+import Section  from '../components/Section.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/Popup/PopupWithImage.js';
+import PopupWithForm from '../components/Popup/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+
 
 
 const buttonAdd = document.querySelector('.profile__add-button');
@@ -61,7 +63,6 @@ function handleCardClick(name, link) {
 function handleAddFormSubmit(formData) {
   formData = {name: namePicture.value, link: linkImage.value};
   cardList.addItem(createCard(formData));
-  console.log(cardList);
   addPopup.close();
 }
 
