@@ -13,9 +13,8 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/Popup/PopupWithImage.js';
 import PopupWithForm from '../components/Popup/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-
-const nameInput = document.querySelector('#name'); //поле ввода имя
-const jobInput = document.querySelector('#description'); //поле ввода описание
+import HeaderLogo from '../images/header-logo.svg';
+import Avatar from '../images/avatar.png';
 
 const formEditProfile = new FormValidator(formConfig, profileForm);
 const formAddContent = new FormValidator(formConfig, addForm);
@@ -61,17 +60,10 @@ function handleCardClick(name, link) {
   imagePopup.open(name, link);
 }
 
-//заполняем инпуты при редактировании попапа
-function setUserInfoProfile() {
-  const userInfo = profile.getUserInfo();
-  nameInput.value = userInfo.userName;
-  jobInput.value = userInfo.userDescription;
-}
-
 buttonEdit.addEventListener('click', () => {
   formEditProfile.checkValidity();
-  profilePopup.setInputValues(formData);
-  setUserInfoProfile();
+
+  profilePopup.setInputValues(profile.getUserInfo());
   profilePopup.open();
 });
 

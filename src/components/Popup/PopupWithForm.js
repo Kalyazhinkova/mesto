@@ -24,12 +24,12 @@ export default class PopupWithForm extends Popup {
       this._handleFormSubmit(this._getInputValues());
     });
   }
-  //не поняла где вызывать
-  // setInputValues(data) {
-  //   this._inputList.forEach((input) => {
-  //     input.value = data[input.name];
-  //   });
-  // }
+  
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
 
   close(){
     super.close(); //вызываем родительский метод
