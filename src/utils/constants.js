@@ -1,30 +1,4 @@
-export {initialCards, buttonAdd, buttonEdit, profileForm, addForm, formConfig};
-const initialCards = [
-  {
-    image__name: 'Архыз',
-    image__link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    image__name: 'Челябинская область',
-    image__link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    image__name: 'Иваново',
-    image__link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    image__name: 'Камчатка',
-    image__link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    image__name: 'Холмогорский район',
-    image__link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    image__name: 'Байкал',
-    image__link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+export {buttonAdd, buttonEdit, profileForm, addForm, formConfig};
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
