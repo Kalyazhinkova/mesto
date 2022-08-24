@@ -2,7 +2,7 @@ export {avatar, buttonAdd, buttonEdit, avatarEdit, profileForm, avatarForm, addF
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
-const avatarEdit = document.querySelector('.profile__avatar_edit');
+const avatarEdit = document.querySelector('.profile__avatar-edit');
 
 const profileForm = document.querySelector('#profile-form');
 const addForm = document.querySelector('#add-form');
