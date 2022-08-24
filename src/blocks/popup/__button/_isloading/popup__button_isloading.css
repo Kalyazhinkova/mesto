@@ -1,0 +1,7 @@
+.popup__button_isloading {
+  width: 358px;
+  height: 50px;
+  background-image: url('../../../../images/submit-button.svg');
+  color: rgba(0, 0, 0, 0);
+  display: block;
+}

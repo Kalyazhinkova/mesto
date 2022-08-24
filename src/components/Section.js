@@ -1,6 +1,5 @@
 export default class Section {
-  constructor({data, renderer}, сontainerSelector) {
-    this._items = data;
+  constructor({renderer}, сontainerSelector) {
     this._renderer = renderer; //функция колбэк, которая отвечает за создание и отрисовку данных на странице
     this._container = document.querySelector(сontainerSelector);
   }
@@ -17,9 +16,9 @@ export default class Section {
     this._renderer(item);
   }
 
-  renderItems() {
+  renderItems(items) {
     this.clear();
-    this._items.forEach((item)=>{
+    items.forEach((item)=>{
       this._renderer(item);
     })
   }

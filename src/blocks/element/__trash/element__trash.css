@@ -1,9 +1,11 @@
 .element__trash {
   width: 18px;
   height: 19px;
-  position: relative;
-  bottom: 262px;
-  left: 244px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  /* bottom: 262px; */
+  /* left: 244px; */
   background-image: url('../../../images/trash.svg');
   background-color: rgba(0,0,0,0);
   z-index: 2;
