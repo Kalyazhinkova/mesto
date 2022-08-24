@@ -9,15 +9,6 @@ export default class PopupWithForm extends Popup {
     this._inputList = Array.from(this._popupForm.querySelectorAll('.form__item'));
   }
 
-  _renderLoading(isLoading) {
-    if(isLoading) {
-      this._submitButton.classList.add('popup__button_isloading');
-    }
-    else {
-      this._submitButton.classList.remove('popup__button_isloading');
-    }
-  }
-  
   //собираем данные всех полей формы
   _getInputValues() {
     this._formValues = {};
@@ -31,7 +22,6 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener('submit',(evt)=>{
       evt.preventDefault();
-      this._renderLoading(true);
       this._handleFormSubmit(this._getInputValues());
     });
   }
@@ -49,7 +39,7 @@ export default class PopupWithForm extends Popup {
   }
 
   open() {
-    this._renderLoading(false);
+    //this._renderLoading(false);
     super.open();
   }
 

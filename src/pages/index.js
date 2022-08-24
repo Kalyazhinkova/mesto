@@ -20,6 +20,7 @@ import Api from '../components/Api.js';
 import UserInfo from '../components/UserInfo.js';
 import HeaderLogo from '../images/header-logo.svg';
 import Avatar from '../images/avatar.png';
+import { initial } from 'lodash';
 
 
 const formEditProfile = new FormValidator(formConfig, profileForm);
@@ -35,13 +36,14 @@ const api = new Api(apiConfig);
 //константа с данными профиля
 const profile = new UserInfo('.profile__name', '.profile__description', '.profile__avatar');
 
-
-api.getUserInfo()
-  .then((res) => {
-    profile.setUserInfo(res);
-    profile.setAvatar(res);
-  })
-  .catch(err => console.log(err));
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+]).then(([info, initialCards]) => {
+  profile.setUserInfo(info);
+  //profile.setAvatar(info);
+  cardList.renderItems(initialCards);
+}).catch(err => console.log("Произошла ошибка: ", err));
 
   const cardList = new Section({
     renderer: (cardItem) => {
@@ -49,45 +51,46 @@ api.getUserInfo()
     },
   }, '.elements');
 
-api.getInitialCards()
-  .then((cards) => {
-    cardList.renderItems(cards);
-  })
-  .catch(err => console.log("Произошла ошибка: ", err));
 
 //попап редактирования профиля
 const profilePopup = new PopupWithForm('.popup_profile', {
   handleFormSubmit: (formData) => {
+    formEditProfile.disabledSubmitButton();
     api.setNewUserInfo(formData.name, formData.about)
     .then((res) => {
       profile.setUserInfo(res);
       profilePopup.close();
-    })  
-    .catch(err => console.log(err));
-    
+    })
+    .catch(err => console.log(err))
+    .finally(() => formEditProfile.enableSubmitButton());
   }
 });
 
 //попап редактирования аватара
 const avatarPopup = new PopupWithForm('.popup_avatar', {
   handleFormSubmit: (formData) => {
+    formAvatar.disabledSubmitButton();
     api.setNewAvatar(formData.avatar__link)
     .then((res) => {
-      profile.setAvatar(res);
+      profile.setUserInfo(res);
       avatarPopup.close();
     })
+    .catch(err => console.log(err))
+    .finally(() => formAvatar.enableSubmitButton());
   }
 });
 
 //попап добавления карточки
 const addPopup = new PopupWithForm('.popup_add', {
   handleFormSubmit: (formData) => {
+    formAddContent.disabledSubmitButton();
     api.createCard(formData.image__name, formData.image__link)
     .then(data => {
       cardList.addItem(createCard(data));
       addPopup.close();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(() => formAddContent.enableSubmitButton());
   }
 });
 
@@ -131,7 +134,6 @@ function createCard(data) {
         })
         .catch(err => console.log(err));
     })
-      
     }
   });
   const cardElement = card.generateCard();

@@ -15,9 +15,10 @@ export default class UserInfo {
     this._currentUser = currentUser;
     this.userName.textContent = currentUser.name;
     this.userDescription.textContent = currentUser.about;
+    this.avatar.src = currentUser.avatar;
   }
   
-  setAvatar({avatar}) {
-    this.avatar.src = avatar;
-  }
+  // setAvatar({avatar}) {
+  //   this.avatar.src = avatar;
+  // }
 }
