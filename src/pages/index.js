@@ -55,42 +55,46 @@ Promise.all([
 //попап редактирования профиля
 const profilePopup = new PopupWithForm('.popup_profile', {
   handleFormSubmit: (formData) => {
-    formEditProfile.disabledSubmitButton();
+    //formEditProfile.disabledSubmitButton();
     api.setNewUserInfo(formData.name, formData.about)
     .then((res) => {
       profile.setUserInfo(res);
       profilePopup.close();
     })
     .catch(err => console.log(err))
-    .finally(() => formEditProfile.enableSubmitButton());
+    .finally(() => profilePopup.changeSubmitButton());
+    //.finally(() => formEditProfile.enableSubmitButton());
+    
   }
 });
 
 //попап редактирования аватара
 const avatarPopup = new PopupWithForm('.popup_avatar', {
   handleFormSubmit: (formData) => {
-    formAvatar.disabledSubmitButton();
+    //formAvatar.disabledSubmitButton();
     api.setNewAvatar(formData.avatar__link)
     .then((res) => {
       profile.setUserInfo(res);
       avatarPopup.close();
     })
     .catch(err => console.log(err))
-    .finally(() => formAvatar.enableSubmitButton());
+    .finally(() => avatarPopup.changeSubmitButton());
+    //.finally(() => formAvatar.enableSubmitButton());
   }
 });
 
 //попап добавления карточки
 const addPopup = new PopupWithForm('.popup_add', {
   handleFormSubmit: (formData) => {
-    formAddContent.disabledSubmitButton();
+    //formAddContent.disabledSubmitButton();
     api.createCard(formData.image__name, formData.image__link)
     .then(data => {
       cardList.addItem(createCard(data));
       addPopup.close();
     })
     .catch(err => console.log(err))
-    .finally(() => formAddContent.enableSubmitButton());
+    .finally(() => addPopup.changeSubmitButton());
+    //.finally(() => formAddContent.enableSubmitButton());
   }
 });
 

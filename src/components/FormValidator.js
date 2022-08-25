@@ -11,7 +11,7 @@ export default class FormValidator {
 
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._buttonTextSubmit = this._buttonElement.textContent;
+    //this._buttonTextSubmit = this._buttonElement.textContent;
   }
 
   //Показываем ошибку
@@ -53,17 +53,17 @@ export default class FormValidator {
     }
   }
 
-  enableSubmitButton() {
+ // enableSubmitButton() {
     //this._buttonElement.classList.remove(this._inactiveButtonClass);
     //this._buttonElement.removeAttribute('disabled');
-    this._buttonElement.textContent = this._buttonTextSubmit;
-  }
+    //this._buttonElement.textContent = this._buttonTextSubmit;
+  //}
 
-  disabledSubmitButton() {
+  //disabledSubmitButton() {
     //this._buttonElement.classList.add(this._inactiveButtonClass);
     //this._buttonElement.setAttribute('disabled', 'true');
-    this._buttonElement.textContent = "Сохранение...";
-  }
+    //this._buttonElement.textContent = "Сохранение...";
+  //}
 
   _setEventListeners() {
     this._toggleButtonState();
