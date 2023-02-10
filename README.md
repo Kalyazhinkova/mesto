@@ -16,4 +16,4 @@
 * БЭМ (Nested)
 #
 
- Сайт размещен по адресу https://kalyazhinkova.github.io/mesto/
+ Посмотреть сайт можно по адресу https://kalyazhinkova.github.io/mesto/
